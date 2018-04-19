@@ -1,49 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>chapter05> todo list</title>
   <style>
-    #todos li{
-      margin: 3px 0;
-      padding: 3px;
+    .wrap {
+      width: 30%;
+      margin: 0 auto;
     }
-    .active{
-      background-color: blue;      
+
+    #btn {
+      margin-bottom: 10px;
+    }
+
+    #todos {
+      padding: 10px;
+      margin: 0;
+      background-color: #eee;
+    }
+
+    #todos li {
+      margin: 3px 0 10px;
+      padding: 5px;
+      list-style: none;
+      border-bottom: solid 1px #333;
+    }
+
+    .active {
       color: white;
-    }    
+      background-color: #4ba3c5;
+    }
   </style>
 </head>
-<body>
-  <h1>할일 목록</h1>
-  <button id="btn">할일 입력</button>
-  <ul id="todos">
 
-  </ul>
+<body>
+  <div class="wrap">
+    <h1 id="title">할일</h1>
+    <button id="btn">할일 입력</button>
+    <ul id="todos">
+      <li>첫번째</li>
+      <li>두번째</li>
+    </ul>
+  </div>
   <script>
+    var title = document.getElementById('title');
     var btn = document.getElementById('btn');
     var todoContainer = document.getElementById('todos');
-    var 
-    btn.addEventListener('click', function(){
-      var title = window.prompt('할일을 입력해 주세요.');
-      var st = '<li class="active">' + title + '</li>';
-      uiTodos.innerHTML += st;
-      setEvent();
-      // console.log( document.querySelectorAll('#todos li').length );
+    var currentTodo = null;
+    var todoTxt = null;
+    var todos = [];
+
+    //=== init
+    updateList();
+    setEvent();    
+    setCurrent(0);
+
+    btn.addEventListener('click', function () {
+      showWriteTodoUI();
     });
 
-    function setEvent(){
-
+    function showWriteTodoUI() {
+      todoTxt = window.prompt('할일을 입력해 주세요~');      
+      if (todoTxt.trim().length == 0) {
+        showWriteTodoUI();
+      } else {
+        addTodo(todoContainer, todoTxt);                
+      }
     }
 
-    
-    
+    function setEvent() {      
+      todoContainer.addEventListener('click', function (e) {
+        // var self = e.currentTarget; // console.log( self ); // 이건 UL 을 가리킵니다.     
+        var child = e.target;        
+        if( child.nodeName != 'LI' ) return; // 가끔 UL 이 찍히기도 해요.         
+        setCurrent(getId(todos, child));
+      });
+    }
 
-  
+    function initTodos() {
+      for (var i = 0; i < todos.length; i++) {
+        var todo = todos[i];
+        todo.removeAttribute('class');
+      }
+    }
 
-    
+    function addTodo(container, txt){
+      container.innerHTML += '<li>'+ txt + '</li>';      
+      updateList();
+      setCurrent(todos.length - 1);
+    }
+
+    function setCurrent(todoNum) {
+      initTodos();
+      currentTodo = todos[todoNum];
+      currentTodo.setAttribute('class', 'active');
+      title.innerText = currentTodo.innerText;
+    }
+
+    function getId(list, item) {
+      for (var i = 0; i < list.length; i++) {
+        if (list[i] === item) return i;
+      }
+    }
+
+    function updateList() {
+      todos = document.querySelectorAll('#todos li');
+    }
   </script>
 </body>
+
 </html>
