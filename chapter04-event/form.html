@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>event form</title>
+</head>
+<body>
+
+
+
+  <form id="form" action="">
+    <fieldset>
+      <legend>주소록</legend>
+      <textarea name="txt" id="txt" cols="30" rows="10"></textarea><br>
+      <input type="submit" value="불러오기">      
+    </fieldset>
+  </form>
+
+  <script>
+    var address = ['김철수', 'email: kcs@gmail.com'];
+    // form
+    var q = document.getElementById('form');
+    function addrSearch(){
+      var textArea = q.txt; // textarea 객체
+      // console.log( textArea );
+      textArea.value = '이름 / 주소 \n';
+      textArea.value += address[0]  + ', ' + address[1] + '\n';    
+    }
+    // 
+    q.addEventListener('submit', function(e){
+      e.preventDefault(); 
+      addrSearch();
+    })
+
+    
+  </script>
+</body>
+</html>

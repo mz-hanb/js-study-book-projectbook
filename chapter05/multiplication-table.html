@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>chapter05> multiplication table</title>
+</head>
+
+<body>
+  <!-- 
+    1. 사용자 입력 
+    2. 입력값이 조건( 1~9 사이의 숫자인지 확인 )
+    3. 조건에 맞음? 맞지않음? 에 대한 내용 처리
+   -->
+  <!-- reel_640x360.mp4  -->
+  <button id="btn" value="구구단 출력하기">구구단 출력하기</button>
+  <ul id="out"></ul>
+
+  <script>
+    var userAnswer = '';
+    var btn = document.getElementById('btn');
+    var uiContatiner = document.getElementById('out');    
+    
+    btn.addEventListener('click', function (e) {      
+      showUI();      
+      if (checkValue(userAnswer)) {
+        showNumbers(userAnswer * 1);
+
+      } else {
+        // alert('1~9 사이의 숫자를 입력해 주세요. ');
+        showUI();        
+      }
+    });
+    
+    
+    function checkValue(tgVal) {
+      if (tgVal.length == 0) return false;
+      var tgNum = tgVal * 1;
+      if (tgNum >= 1 && tgNum <= 9) {
+        return true;
+
+      } else {
+        return false;
+      }
+    }
+
+    function showNumbers(num) {
+      var st = '';
+      uiContatiner.innerHTML = '';
+      for (var i = 0; i < 9; i++) {
+        st += '<li>' + num + ' * ' + (i + 1) + ' = ' + (num * (i + 1)) + '</li>';
+      }
+      // console.log( st );      
+      uiContatiner.innerHTML = st;
+    }
+    
+    function showUI() {
+      userAnswer = window.prompt('구구단 몇 단을 볼까요?', '1~9 사이의 숫자를 입력해 주세요.');
+    }
+
+  </script>
+
+
+</body>
+
+</html>

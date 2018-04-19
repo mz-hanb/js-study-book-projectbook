@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>event touch</title>
+  <style>
+    #box{
+      width: 50px; 
+      height: 50px;
+      background: #eee;
+      position: absolute;      
+    }
+    #box:hover, #box .hover{
+      background: red;
+    }
+    
+  </style>
+</head>
+<body>
+
+  <div id="box">box</div>
+  <script>
+    var box = document.getElementById('box');
+    
+    var objE = {
+      over: function(e){
+        console.log( e.type )
+      }, 
+      out: function(e){
+        console.log( e.type )
+      }, 
+      move: function(e){
+        box.style.top = ( e.clientY - 25) + 'px';
+        box.style.left = ( e.clientX - 25 ) + 'px';      
+      }
+    }
+
+    box.addEventListener('mouseover', function(e){
+      objE.over(e);
+    });
+    box.addEventListener('mouseout', function(e){
+      objE.out(e);
+    });
+    box.addEventListener('mousemove', function(e){
+      objE.move(e);
+    });      
+    
+  </script>
+  
+</body>
+</html>
