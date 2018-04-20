@@ -54,30 +54,26 @@
     var todos = [];
 
     //=== init
-    updateList();
-    setEvent();    
+    updateList();   
     setCurrent(0);
 
     btn.addEventListener('click', function () {
       showWriteTodoUI();
     });
-
-    function showWriteTodoUI() {
-      todoTxt = window.prompt('할일을 입력해 주세요~');      
-      if (todoTxt.trim().length == 0) {
-        showWriteTodoUI();
-      } else {
-        addTodo(todoContainer, todoTxt);                
-      }
-    }
-
-    function setEvent() {      
-      todoContainer.addEventListener('click', function (e) {
+    todoContainer.addEventListener('click', function (e) {
         // var self = e.currentTarget; // console.log( self ); // 이건 UL 을 가리킵니다.     
         var child = e.target;        
         if( child.nodeName != 'LI' ) return; // 가끔 UL 이 찍히기도 해요.         
         setCurrent(getId(todos, child));
-      });
+    });
+
+    function showAddTodoUI() {
+      todoTxt = window.prompt('할일을 입력해 주세요~');      
+      if (todoTxt.trim().length == 0) {
+        showAddTodoUI();
+      } else {
+        addTodo(todoContainer, todoTxt);                
+      }
     }
 
     function initTodos() {
