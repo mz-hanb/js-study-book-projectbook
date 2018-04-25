@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>javascript> study> book</title>
+  <style>
+    [v-cloak]{
+      display: none;
+    }    
+  </style>
+</head>
+<body>
+  <div id="app" v-cloak>
+    <h2>exam list</h2>
+    <ul>
+      <li v-for="exam in examList"><a v-bind:href="urlPrefix + exam.url" target="_blank">{{ exam.title }}</a></li>
+    </ul>
+  </div>
+<script src="https://unpkg.com/vue"></script>
+<script>
+  var app = new Vue({
+    el: '#app', 
+    data: {
+      urlPrefix: 'https://mz-hanb.github.io/js-study-book-projectbook/',
+      examList: [
+        {title: 'chapter05> multiplication-table', url: 'chapter05/multiplication-table.html'},
+        {title: 'chapter05> todoList', url: 'chapter05/todoList.html'},
+        {title: 'chapter06> calulator', url: 'chapter06/cal.html'}
+      ]
+    } 
+    
+  })
+
+</script>
+</body>
+</html>

@@ -9,37 +9,39 @@ var btnClear = document.getElementById('btn-clear');
 var btnResult = document.getElementById('btn-result');
 var isFirst = true;
 
-init();
 
-function init(){
-  for( var i=0; i<inputs.length; i++){
-    var input = inputs[i];
-    input.addEventListener('click', function(e){
-      showValues(e.target.value);      
-    });
-  }
+for( var i=0; i<inputs.length; i++){
+  var input =inputs[i];
+  input.addEventListener('click', function(e){
+    // console.log( e.target.value );
+
+  showValuse( e.target.value); 
+
+
+  })
 }
-function showValues(val){
-  if( val === '=' ) {
-    showResult();
-    return;
-  }  
-  if( val === 'clear'){
-    clearValues();
-    return;    
-  }
-  if( isFirst ){
+
+
+function showValuse( val ){
+  if(isFirst) {
     result.value = '';
     isFirst = false;
-  } 
+  }
+if( val == '=' ){
+  showResult();
+  return;
+}
+if( val == 'clear'){
+  clearCal();
+  return;
+}
+
   result.value += val;
 }
-function clearValues(){
-  result.value = 0;
-}
 function showResult(){
-  result.value = eval( result.value );
-  isFirst = true;
+  result.value = eval(result.value);
 }
-
-
+function clearCal(){
+  console.log('clear');
+  result.value = '0';
+} 
