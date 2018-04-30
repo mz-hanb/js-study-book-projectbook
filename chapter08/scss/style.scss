@@ -1,22 +1,24 @@
+// reset
+table, th, td{  
+  border: 1px solid #eee;
+}
+
 
 .calendar{
   width: 600px;
+  padding: 30px;
   background: #555;
   color: white;
   text-align: center;
 }
 
 table{
-  width: 100%;
-  background: #555;
-  text-align: center;  
+  margin: 15px 0;
+  width: 100%;  
+  background: #555;  
+  text-align: center;     
   border-collapse: collapse;
-  border: 1px solid #eee;
-  
-  th, td{
-    content: '';
-    // padding: 5px;
-    border: 1px solid #eee;
-  }
-  
+  th, td{    
+    padding: 10px;     
+  }  
 }
