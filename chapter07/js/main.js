@@ -16,7 +16,6 @@ var imgData = [
 
 // console.log(btnCloseModal);
 // console.log(_btnCloseModal);
-
 btnCloseModal.addEventListener('click', closeModal);
 
 // ui gallery
@@ -25,8 +24,7 @@ uiGallery.addEventListener('click', function(e){
 })
 
 // indigator
-document.getElementById('indigator').addEventListener('click', function(e){  
-  // console.log( e.target.textContent );  
+document.getElementById('indigator').addEventListener('click', function(e){    
   changeImgUrl( 'images/img0' + (e.target.textContent) + '.jpg')
 })
 
@@ -41,6 +39,5 @@ function closeModal(){
   modal.classList.add('hide');
 }
 function changeImgUrl(url){
-
   modalImg.setAttribute('src', url);
 }
