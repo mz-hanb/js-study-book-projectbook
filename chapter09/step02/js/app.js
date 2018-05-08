@@ -40,7 +40,7 @@ function setCurrent(idx){
 }
 
 function rotatePage(idx){
-  var tgDeg = idx * 90;
+  var tgDeg = idx * 90 * -1;
   pageContainer.style.transform = 'rotateY('+tgDeg+'deg)';
   
   console.log( tgDeg  );

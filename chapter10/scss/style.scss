@@ -1,0 +1,48 @@
+.banner{
+  position: relative;
+  overflow: hidden;
+  width: 600px; 
+  height: 190px;
+  border: 1px solid #e3e3e3;
+  background: url('../imgs/bg.png');
+  transition: all .3s;
+
+
+  button{
+    position: absolute;    
+    border: none;
+    padding: 5px;    
+    cursor: pointer;
+  }
+  .btn-close-banner{  
+    right: 0; 
+    bottom: -28px;
+  }
+  .btn-toggle-bgm{
+    left: 5px;
+    bottom: 5px;   
+    background: url('../imgs/sound_off.png') no-repeat;
+    text-indent: -9999px;
+  }
+  
+  &.close{
+    height: 0px;    
+  }
+
+  .balloon{
+    position: absolute;    
+    display: inline-block;     
+    cursor: pointer;   
+  }
+
+  @keyframes falldown {
+    from{
+      top: -120px;
+    }
+    to{
+      top: 320px;
+    }
+    
+  }
+
+}
