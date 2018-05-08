@@ -6,8 +6,7 @@
   border: 1px solid #e3e3e3;
   background: url('../imgs/bg.png');
   transition: all .3s;
-
-
+  
   button{
     position: absolute;    
     border: none;
@@ -31,7 +30,8 @@
 
   .balloon{
     position: absolute;    
-    display: inline-block;     
+    display: inline-block; 
+    top: -120px;    
     cursor: pointer;       
   }
   .rotate{

@@ -83,10 +83,10 @@ var banner = function(bannerEle, bgm){
     balloon.classList.add('balloon');
     balloon.classList.add('rotate');
     balloon.src = './imgs/balloon'+ num + '.png';     
-    var tgTop = -120;
+    
     var tgLeft = Math.floor( Math.random()*480 );    
 
-    balloon.style.top = tgTop + 'px';
+    
     balloon.style.left = tgLeft + 'px';
     balloon.style.animationName = 'falldown';
     balloon.style.animationDuration = Math.floor( Math.random() *10 ) + 7 + 's';          
