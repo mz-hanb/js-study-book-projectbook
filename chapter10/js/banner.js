@@ -15,7 +15,7 @@ var banner = function(bannerEle, bgm){
   var onBgm = true;
 
   // startBgm();  
-  setInterval( settingBalloons, 700);
+  setInterval( addBallon, 700);
 
   banner.addEventListener( 'click', function(e){    
     var tgName = e.target.className;
@@ -77,10 +77,10 @@ var banner = function(bannerEle, bgm){
     btnToggleBgm.style.backgroundImage  = 'url("./imgs/sound_'+ imgUrl  +'.png")';   
   }
 
-  function settingBalloons(){
+  function addBallon(){
     // 1~5
     var num = Math.floor( Math.random()*5 + 1 );
-
+    
     // console.log( num );
     var balloon =  document.createElement('img');
     balloon.classList.add('balloon');
@@ -91,14 +91,13 @@ var banner = function(bannerEle, bgm){
     balloon.style.top = tgTop + 'px';
     balloon.style.left = tgLeft + 'px';
     balloon.style.animationName = 'falldown';
-    balloon.style.animationDuration = Math.floor( Math.random() *10 ) + 7 + 's';        
+    balloon.style.animationDuration = Math.floor( Math.random() *10 ) + 7 + 's';          
 
     banner.appendChild( balloon );  
-  }
+  }  
 
   function gotoDest(){
-    window.open('http://www.naver.com', '_blank');
-    // window.location.href = 'http://www.naver.com';
+    window.open('http://www.naver.com', '_blank');    
   }
 
 
