@@ -31,7 +31,6 @@ var banner = function(bannerEle, bgm){
         // console.log( 'balloon');
         gotoDest();        
         break;
-
     }
     // console.log( tgName );
     // if( tgName === 'btn-close-banner' ){
@@ -41,8 +40,6 @@ var banner = function(bannerEle, bgm){
     //   toggleBgm();
     // }
   });
-  
-
 
   // bgm> init
   function startBgm(){
@@ -80,10 +77,11 @@ var banner = function(bannerEle, bgm){
   function addBallon(){
     // 1~5
     var num = Math.floor( Math.random()*5 + 1 );
-    
+
     // console.log( num );
     var balloon =  document.createElement('img');
     balloon.classList.add('balloon');
+    balloon.classList.add('rotate');
     balloon.src = './imgs/balloon'+ num + '.png';     
     var tgTop = -120;
     var tgLeft = Math.floor( Math.random()*480 );    
@@ -99,7 +97,5 @@ var banner = function(bannerEle, bgm){
   function gotoDest(){
     window.open('http://www.naver.com', '_blank');    
   }
-
-
 
 }(document.getElementById('banner'), document.getElementById('banner-bgm'));
