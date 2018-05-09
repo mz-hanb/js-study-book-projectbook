@@ -1,0 +1,70 @@
+// common
+*{
+  box-sizing: border-box;
+}
+button{  
+  border: none;
+  cursor: pointer;
+}
+// vars 
+$commonColor: #e5e5e5;
+$mainHeight: 190px; // banner height
+$balloonHeight: 120px; // balloon height;
+$transitionDutime: .5s;
+
+
+body{
+  padding: 50px 10px;
+}
+
+.banner-wrap{
+  position: relative;
+  width: 600px;
+  height: $mainHeight;  
+  transition: height $transitionDutime;
+
+  .btn-toggle-banner-close{
+    position: absolute;
+    right: 0;    
+    top: $mainHeight;
+    line-height: 30px;    
+    transition: all $transitionDutime;    
+    &.close{
+      top: 0;      
+      height: 30px; 
+    }
+  }
+}
+
+.banner{
+  position: absolute;  
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $mainHeight;
+  overflow: hidden;  
+  border: 1px solid #eee;
+  background: url(../imgs/bg.png);
+  transition: height $transitionDutime; 
+
+  .btn-toggle-bgm{  
+    position: absolute;  
+    margin: 5px;
+    bottom: 0;
+    width: 32px; 
+    height: 28px;    
+    text-indent: -9999px;    
+    background: url(../imgs/sound_false.png) no-repeat;    
+  }
+
+  .balloon{
+    position: absolute;    
+    display: inline-block;
+    cursor: pointer;    
+  }
+}
+
+.close{
+  height: 0;
+}
+

@@ -1,11 +1,26 @@
-.banner{
+// common
+*{
+  box-sizing: border-box;
+}
+
+// vars
+
+
+.banner{  
   position: relative;
-  overflow: hidden;
-  width: 600px; 
+  width: 600px;  
   height: 190px;
-  border: 1px solid #e3e3e3;
-  background: url('../imgs/bg.png');
-  transition: all .3s;
+  transition: all .3s;    
+
+  &-contents{
+    position: absolute;    
+    overflow: hidden;    
+    width: 600px;
+    height: 190px;
+    border: 1px solid #e3e3e3;
+    background: url('../imgs/bg.png');
+    transition: all .3s;    
+  } 
   
   button{
     position: absolute;    
@@ -23,39 +38,39 @@
     background: url('../imgs/sound_off.png') no-repeat;
     text-indent: -9999px;
   }
-  
-  &.close{
-    height: 0px;    
-  }
-
   .balloon{
     position: absolute;    
     display: inline-block; 
     top: -120px;    
     cursor: pointer;       
-  }
-  .rotate{
-    animation: rotateBalloon 3s;
-  }
+    animation-name: falldown, rotateBalloon;
+    animation-timing-function: cubic-bezier(.17,.67,.83,.67), cubic-bezier(.17,.67,.83,.67);
+    // 참고
+    // https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function
+    // http://cubic-bezier.com
+  }  
+}
+.close{
+  height: 0px;    
+}
 
-  @keyframes falldown {
-    from{
-      top: -120px;
-      transform: rotate(0deg);
-    }
-    to{
-      top: 320px;
-      transform: rotate(360deg);
-    }    
+// animations
+@keyframes falldown {
+  from{
+    top: -120px;
+    transform: rotate(0deg);
   }
-  @keyframes rotateBalloon{
-    from{      
-      transform: rotate(0deg);
-    }
-    to{      
-      transform: rotate(360deg);
-    }   
-    
+  to{
+    top: 320px;
+    transform: rotate(360deg);
+  }    
+}
+@keyframes rotateBalloon{
+  from{      
+    transform: rotate(0deg);
   }
-
+  to{      
+    transform: rotate(360deg);
+  }   
+  
 }

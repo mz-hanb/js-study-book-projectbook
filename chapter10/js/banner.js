@@ -10,24 +10,25 @@
 
 var banner = function(bannerEle, bgm){
   var banner = bannerEle;
+  var bannerContents = banner.querySelector('.banner-contents');
   var btnToggleBgm = banner.querySelector('.btn-toggle-bgm');
   var onBanner = true;
-  var onBgm = true;
+  var onBgm = true;  
 
-  // startBgm();  
-  setInterval( addBalloon, 700);
+  startBgm();  
+  setInterval( addBalloon, 700 );
 
   banner.addEventListener( 'click', function(e){    
     var tgName = e.target.className;
+    // console.log( tgName );
     switch( e.target.className ){
       case 'btn-close-banner': 
         toggleBannerShow();
         break;
       case 'btn-toggle-bgm': 
-        toggleBannerShow();
+        toggleBgm();
         break;
-      case 'balloon': 
-        // console.log( 'balloon');
+      case 'balloon':         
         gotoDest();        
         break;
     }    
@@ -45,9 +46,11 @@ var banner = function(bannerEle, bgm){
     onBanner = !onBanner;
     if( onBanner ){
       banner.classList.remove('close');     
+      bannerContents.classList.remove('close');           
 
     }else{
       banner.classList.add('close');
+      bannerContents.classList.add('close');   
     }
   }
 
@@ -72,18 +75,21 @@ var banner = function(bannerEle, bgm){
 
     // console.log( num );
     var balloon =  document.createElement('img');
-    balloon.classList.add('balloon');
-    balloon.classList.add('rotate');
+    balloon.classList.add('balloon');    
     balloon.src = './imgs/balloon'+ num + '.png';     
     
     var tgLeft = Math.floor( Math.random()*480 );    
-
+    var falldownTime = Math.floor( Math.random() *10 ) + 7; // 애니메이션 시간
+    var rotateTime = Math.floor( Math.random() *10 ) + 7; // 애니메이션 시간
     
-    balloon.style.left = tgLeft + 'px';
-    balloon.style.animationName = 'falldown';
-    balloon.style.animationDuration = Math.floor( Math.random() *10 ) + 7 + 's';          
+    balloon.style.left = tgLeft + 'px';    
+    balloon.style.animationDuration = falldownTime + 's, ' + rotateTime + 's';          
+    bannerContents.appendChild( balloon );  
 
-    banner.appendChild( balloon );  
+    //--- 애니메이션이 끝난 개체는 지운다.
+    setTimeout(() => {
+      bannerContents.removeChild( balloon );      
+    }, falldownTime * 1000 + 100 );
   }  
 
   // balloon click event
