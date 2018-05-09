@@ -1,11 +1,11 @@
 /*
 기능
-- 배너닫기
+- 배너 열기/닫기( toggle )
 - bgm on/off( toggle )
-- random baloon ( click link url )
-      https://www.w3schools.com/js/js_random.asp
-
-- css animation
+- add balloon( setInterval )
+  Math.random()      
+- balloon click event
+  
 */
 
 var banner = function(bannerEle, bgm){
@@ -15,11 +15,10 @@ var banner = function(bannerEle, bgm){
   var onBgm = true;
 
   // startBgm();  
-  setInterval( addBallon, 700);
+  setInterval( addBalloon, 700);
 
   banner.addEventListener( 'click', function(e){    
     var tgName = e.target.className;
-
     switch( e.target.className ){
       case 'btn-close-banner': 
         toggleBannerShow();
@@ -31,14 +30,7 @@ var banner = function(bannerEle, bgm){
         // console.log( 'balloon');
         gotoDest();        
         break;
-    }
-    // console.log( tgName );
-    // if( tgName === 'btn-close-banner' ){
-    //   toggleBannerShow();
-
-    // }else if(  tgName === 'btn-toggle-bgm' ){
-    //   toggleBgm();
-    // }
+    }    
   });
 
   // bgm> init
@@ -74,7 +66,7 @@ var banner = function(bannerEle, bgm){
     btnToggleBgm.style.backgroundImage  = 'url("./imgs/sound_'+ imgUrl  +'.png")';   
   }
 
-  function addBallon(){
+  function addBalloon(){
     // 1~5
     var num = Math.floor( Math.random()*5 + 1 );
 
@@ -94,6 +86,7 @@ var banner = function(bannerEle, bgm){
     banner.appendChild( balloon );  
   }  
 
+  // balloon click event
   function gotoDest(){
     window.open('http://www.naver.com', '_blank');    
   }
