@@ -36,7 +36,7 @@ function banner(bannerEle, bgmUrl) {
   function initBalloons() {    
     for (var i = 0; i < 2; i++) {
       for (var k = 1; k <= 5; k++) {
-        banner.innerHTML += '<img class="balloon" src="./imgs/balloon'+ k +'.png"></img>';        
+        banner.innerHTML += `<img class="balloon" src="./imgs/balloon${k}.png">`;        
       }
     }    
     balloons = banner.querySelectorAll('.balloon');
