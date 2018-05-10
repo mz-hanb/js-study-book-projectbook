@@ -6,16 +6,29 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>javascript> study> book</title>
   <style>
+    html{
+      font-size: 10px;
+    }
+    body{
+      font-size: 1.6rem;
+    }     
     [v-cloak]{
       display: none;
     }    
+    .desc{
+      margin-top: .5rem;
+      font-size: 1.3rem;
+    }
   </style>
 </head>
 <body>
   <div id="app" v-cloak>
     <h2>exam list</h2>
     <ul>
-      <li v-for="exam in examList"><a v-bind:href="urlPrefix + exam.url" target="_blank">{{ exam.title }}</a></li>
+      <li v-for="exam in examList">
+        <a v-bind:href="urlPrefix + exam.url" target="_blank">{{ exam.title }}</a>
+        <div v-if="exam.desc" class="desc">{{exam.desc}}</div>
+      </li>
     </ul>
   </div>
 <script src="https://unpkg.com/vue"></script>
@@ -31,7 +44,8 @@
         {title: 'chapter07> lightbox', url: 'chapter07/'},
         {title: 'chapter08> calendar', url: 'chapter08/'},
         {title: 'chapter09> 3d page', url: 'chapter09/'},
-        {title: 'chapter10> banner', url: 'chapter10/'}
+        {title: 'chapter10> banner', url: 'chapter10/'},
+        {title: 'chapter10-v> banner: requestAnimationFrame', url: 'chapter10-v2/', desc: 'point> UI구성, Math.random(), requestAnimationFrame'},
       ]
     }     
   })

@@ -49,12 +49,14 @@ body{
 
   .btn-toggle-bgm{  
     position: absolute;  
+    z-index: 1;
     margin: 5px;
     bottom: 0;
     width: 32px; 
     height: 28px;    
     text-indent: -9999px;    
-    background: url(../imgs/sound_false.png) no-repeat;    
+    // background: url(../imgs/sound_false.png) no-repeat;    
+    
   }
 
   .balloon{

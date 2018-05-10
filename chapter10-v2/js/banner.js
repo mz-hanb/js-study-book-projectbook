@@ -1,42 +1,44 @@
 function banner(bannerEle, bgmUrl) {
   var banner = bannerEle;
   var bgm = banner.querySelector('#banner-bgm'); // bgm  
-  var btnToggleBgm = banner.querySelector('#btn-toggle-bgm'); // btn toggle 
-
+  var btnToggleBgm = null;
   var bannerHeight = parseInt(window.getComputedStyle(banner).height); // ie9~ 
   var onBgm = false;
   var posList = [];
   var balloons = null;
 
-  init();  
+  init();     
 
-  function init(){
-    
-    // load bgm
-    loadBgm(bgmUrl, false);
+  function init(){    
+
     // add balloons
     initBalloons();
+
     // balloon animation    
     animateBalloons();    
 
-    // bgm toggle on/off
-    btnToggleBgm.addEventListener('click', function () {
-      toggleBgm(!onBgm)
+    // load bgm
+    btnToggleBgm = banner.querySelector('.btn-toggle-bgm'); // btn toggle 
+    loadBgm(bgmUrl, false);      
+    
+    btnToggleBgm.addEventListener( 'click', function(e){      
+      toggleBgm(!onBgm);
     });
+
     // balloon click event
-    banner.addEventListener('click', function(e){
+    banner.addEventListener('click', function(e){      
       if(e.target.nodeName === 'IMG'){
         window.open('https://www.naver.com', '_blank');
       }
-    })
+    });
   }
 
-  function initBalloons() {
+  function initBalloons() {    
     for (var i = 0; i < 2; i++) {
       for (var k = 1; k <= 5; k++) {
-        banner.innerHTML += `<img class="balloon" src="./imgs/balloon${k}.png">`;
+        banner.innerHTML += '<img class="balloon" src="./imgs/balloon'+ k +'.png"></img>';        
       }
-    }
+    }    
     balloons = banner.querySelectorAll('.balloon');
     setInitPosList();
   }
@@ -60,13 +62,11 @@ function banner(bannerEle, bgmUrl) {
       balloon = balloons[i];
       pos = posList[i];
 
-      // console.log( parseInt( pos.x ) );
-
-      // 화면밖이면~ 
+      // 화면밖이면~ 자리 다시 셋팅
       if ( parseInt( pos.y ) > 200 ) {               
         setInitPos(i);
 
-      // 화면 안이면
+      // 화면 안이면 애니메이션 계속
       } else {        
         pos.y += 1 + pos.speed;
         pos.angle += pos.speed;
@@ -98,14 +98,14 @@ function banner(bannerEle, bgmUrl) {
 
   // bgm 
   function toggleBgm(bool) {
-    onBgm = bool;
-    if (bool) {
-      bgm.play();
+    onBgm = bool;   
 
+    if (bool) {
+      bgm.play();      
     } else {
-      bgm.pause();
-    }
-    btnToggleBgm.style.background = 'url( ./imgs/sound_' + bool + '.png)';
+      bgm.pause();      
+    }    
+    btnToggleBgm.style.background = 'url( ./imgs/sound_' + bool + '.png)';       
   }
 
   function loadBgm(url, autoPlay) {
@@ -115,6 +115,7 @@ function banner(bannerEle, bgmUrl) {
   }
 
   return {
+    // public func
     toggleClose: function () {
       banner.classList.toggle('close');
     }

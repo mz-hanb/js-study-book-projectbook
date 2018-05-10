@@ -1,9 +1,10 @@
 
 
 var bannerWrap = document.getElementById('banner-wrap');
-var banner = banner(document.getElementById('banner'), './assets/bgm.mp3');
 var btnToggleBannerClose = document.getElementById('btn-toggle-banner-close');
 var doOpen = true;
+
+var banner = banner(document.getElementById('banner'), './assets/bgm.mp3');
 
 btnToggleBannerClose.addEventListener('click', function(){  
   doOpen = !doOpen;
