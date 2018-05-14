@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>chapter11> map (google)</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <h1>CSSLICK
+      </h1>
+      <nav>
+        <p>
+          <a href="">Home</a>
+        </p>
+        <p>
+          <a href="">About</a>
+        </p>
+        <p>
+          <a href="">Contact Us</a>
+        </p>
+      </nav>
+    </header>
+    <section class="main-view">
+      <div class="wrap">
+        <h2>Contact us</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+    </section>
+    <section class="main">
+      <div class="map-wrap">
+        <div class="desc">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo porro quam velit asperiores, voluptas deleniti, perspiciatis
+          necessitatibus eaque laudantium animi tempora vero quos, quae ut. Eum quam earum inventore ut?Totam suscipit tempore
+          illo quod doloribus. Explicabo cupiditate enim, consequuntur dicta magni ut hic, aspernatur possimus, quidem nam
+          tempora fugit sit nostrum quia distinctio et eligendi animi quas aperiam veniam.
+        </div>
+        <div id="map" class="map"></div>
+
+      </div>
+      <form action="">
+        <h2>Send us Email</h2>
+        <label for="name">Name
+          <input type="text" id="name">
+        </label>
+        <label for="phone">Phone
+          <input type="text" id="phone">
+        </label>
+        <label for="email">Email
+          <input type="text" id="email">
+        </label>
+        <label for="msg">Message
+          <textarea name="" id="msg" cols="30" rows="10"></textarea>
+        </label>
+        <button type="submit">SEND</button>
+      </form>
+    </section>
+  </div>
+
+  <script>
+    /**
+     * api 호출
+     * marker 
+     * style
+     * change marker icon 
+     * > https://pepsized.com/customize-your-google-map-markers/
+     */
+
+    var myPos;
+    setCurrentLocation();
+
+    function initMap() {
+      var map;
+      // 맵 스타일 정의
+      var styleArray = [{
+        featureType: 'all',
+        stylers: [{
+          saturation: -80
+        }]
+      }, {
+        featureType: 'road.arterial',
+        elementType: 'geometry',
+        stylers: [{
+            hue: '#00ffee'
+          },
+          {
+            saturation: 50
+          }
+        ]
+      }, {
+        featureType: 'poi.business',
+        elementType: 'labels',
+        stylers: [{
+          visibility: 'off'
+        }]
+      }];
+
+      var icon = {
+        url: './imgs/icon.png',
+        scaledSize: new google.maps.Size(50, 50)
+      };
+
+      //===
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 17,
+        center: myPos,
+        styles: styleArray
+      });
+      var marker = new google.maps.Marker({
+        position: myPos,
+        map: map,
+        // icon: icon,
+        title: 'I,m here!'
+      });     
+
+      //=== 지오로케이션 사용가능
+      // https://developer.mozilla.org/ko/docs/WebAPI/Using_geolocation
+    }    
+
+    function setCurrentLocation() {      
+      if (navigator.geolocation) {
+        // https://developer.mozilla.org/ko/docs/Web/API/Geolocation/getCurrentPosition
+        navigator.geolocation.getCurrentPosition(
+          // success
+          function (pos) {  
+            myPos = {
+              lat: pos.coords.latitude, 
+              lng: pos.coords.longitude
+            };
+            loadGoogleMap();
+          },
+          // error
+          function () {
+            ehLocatioinError(false, infoWin, map.getCenter());
+          });
+
+        //=== 지오로케이션 사용 붉가능
+      } else {
+        ehLocatioinError(false, infoWin, map.getCenter());
+      }
+    }
+    function ehLocatioinError(hasGeolocation, infoWndow, pos) {
+      infoWindow.setPosition(pos);
+      infoWndow.setContent(hasGeolocation ? 'erro: 지오로케이션 실패' : 'error: 브라우저에서 지오로테이션을 지원하지않음');
+    }
+
+    function loadGoogleMap() {
+      // console.log('loadScript');
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src =
+        'https://maps.googleapis.com/maps/api/js?key=AIzaSyApaLrgqWQGnSNpOVFAkdidkT2sACyJC3E&callback=initMap';
+      document.body.appendChild(script);      
+    }
+  </script>  
+</body>
+
+</html>

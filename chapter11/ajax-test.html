@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>chapter11> ajax</title>
+</head>
+<!-- 
+  http://api.jquery.com/jQuery.ajax/
+  
+ -->
+
+<body>
+  <div id="wrap"></div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script>
+    var listEle = document.createElement('UL');
+    $.ajax({
+      url: './students.json',
+      success: function (data) {
+        console.log(data);
+        setList(data);
+      }
+    })
+
+    function setList(tgData) {
+      var st = '';
+      tgData.forEach(element => {
+        st +=
+          `<li>
+          <span class="name">${element.name}</span>
+          <span class="degree">${element.degree}</span>
+        </li>`;
+      });
+      listEle.innerHTML = st;
+      document.getElementById('wrap').appendChild(listEle);
+
+    }
+  </script>
+</body>
+
+</html>
