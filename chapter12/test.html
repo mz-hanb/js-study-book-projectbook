@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>weather> openwether api 이용하기</title>
+  <!-- https://openweathermap.org/ -->
+</head>
+
+<body>
+
+  <form action="">
+    <select name="" id="city">
+      <option value="Seoul,korea">seoul</option>
+      <option value="Seoul,korea">seoul</option>
+      <option value="Seoul,korea">seoul</option>
+      <option value="Seoul,korea">seoul</option>
+      <option value="Seoul,korea">seoul</option>
+    </select>
+  </form>
+  <div class="icon">
+    <img src="" alt="">
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script>
+    /**
+    // city name: http://kirste.userpage.fu-berlin.de/diverse/doc/ISO_3166.html
+    // We recommend to call API by city ID to get unambiguous result for your city.
+    // default json( 다른 데이타 요구시 관련 option 이 있다.)
+    // city id list: http://openweathermap.org/help/city_list.txt
+    // Units format: https://openweathermap.org/current#format
+    // -> temperature unit query: &units=metric
+    // weather icon image: https://openweathermap.org/weather-conditions
+    */
+
+    // elements
+    var $icon = $('.icon img');
+
+    // values
+    var tgUrl = 'http://api.openweathermap.org/data/2.5/weather?';
+    
+    // var query = 'lat=37.523290&lon=127.036219';
+    // var query = getWeatherQuery('id', '1835848'); // seoul
+    var query = getWeatherQuery('coord', '37.523290,127.036219');
+    var key = '&APPID=8d8ab1717d1d334ec2115059ce15fefd';
+
+    // init
+    getWeather();
+
+    function getWeather() {
+      $.ajax({
+        url: tgUrl + query + key + '&units=metric',
+        dataType: 'json',
+        success: function (data) {
+          showWeather(data);
+        },
+        error: function () {
+          // console.log('e');
+        }
+      });
+    }
+
+    // functions
+    function getWeatherQuery(type, stValue) {
+      var query = '';
+      switch (type) {
+        case 'name':
+          query = 'q=' + stValue;
+          break;
+        case 'id':
+          query = 'id=' + stValue;
+          break;
+        case 'coord':
+          var coords = stValue.split(',');
+          query = 'lat=' + coords[0] + '&lon=' + coords[1];
+          break;
+      }
+      return query;
+    }    
+
+    function showWeather(data) {
+      // name, 
+      var contry = data.sys.country;
+      var cityId = data.id;
+      var cityName = data.name;
+      var temp = {
+        current: data.main.teamp,
+        min: data.main.temp_min,
+        max: data.main.temp_max
+      };
+
+      var iconUrl = 'http://openweathermap.org/img/w/' + data.weather[0].icon + '.png';
+      $icon.attr('src', iconUrl); // weather img       
+      console.dir(data);
+      console.log(iconUrl);
+    }
+  </script>
+
+</body>
+
+</html>
