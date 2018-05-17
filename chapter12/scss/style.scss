@@ -41,27 +41,27 @@ header{
   font-size: 26px;
   & > * {
     // display: inline-block;  
+    height: 50px;
+    line-height: 50px;
+    padding: 0;
   }
   li{  
     width: 100%;
-    border: 1px solid rgba(0, 0, 0, .3);    
+    border: 1px solid rgba(0, 0, 0, .3);        
     // height: 50px;
-    overflow: hidden;
-    &>*{
-      display: inline-block;      
-      // line-height: 50px;
-    }
-    .desc{
+    // overflow: hidden;
+    span{
       width: 50%;
+      display: inline-block;            
+    }
+    
+    .desc{
+      // width: 50%;
     }
     .icon{
-      width: 30%;
+      // width: 30%;
       height: 50px;
-    }
-    .temp{
-      width: 10%;
-      height: 50px;
-    }
+    }   
   }
 }
 
