@@ -1,35 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>weather</title>
   <link rel="stylesheet" href="./css/style.css">
+  <!-- 
+    
+    reload 
+    loading    
+    color theme
+    icon svg animate
+
+   -->
+
 </head>
+
 <body>
-
-
   <div class="wrap">
     <header>
-      <h1>Seoul, Korea</h1>
+      <h1>Today's Weather</h1>
     </header>
-    <section class="main-view">
-      <div class="time">
-        <span class="date">MONDAY, </span><span class="date2">May 15</span>
+    <!-- end || header -->
+
+    <div class="weather-wrap">
+
+      <div class="area">
+          Seoul, Korea
       </div>
-      <div class="icon-weather">
-        <img src="" alt="">
-      </div>
-      <div class="temp">
-        <p class="main">26℃</p>
-        <p class="temp-area"><span class="min">21</span> ~ <span class="max">30</span></p>        
-      </div>
-    </section>    
+      
+      <section class="main-view">
+        <div class="time">
+          <span class="day">MONDAY,</span>
+          <span class="date">May 15 </span>
+          <span class="current-time"></span>
+        </div>        
+        <div class="weather">
+          <p class="desc"></p>
+          <div class="img"><img class="icon" src="" alt=""></div>          
+        </div>
+        <div class="temp">
+          <p class="main">26℃</p>
+          <p class="min-max"></p>
+        </div>
+      </section>
+
+      <section>
+
+      </section>
+
+    </div>
+    <!-- end || weather -->
+
+    <footer>
+      <p>
+        <a href="https://openweathermap.orgs">https://openweathermap.org</a>
+      </p>
+    </footer>
+    <!-- end || footer -->
+  
   </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  <div class="loading">
+    <div class="loading-icon">
+      <img src="./imgs/Spinner-1s-200px.svg" alt="">
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
-    <script src="./js/weather.js"></script>    
+  <script src="./js/weather.js"></script>
 </body>
+
 </html>
