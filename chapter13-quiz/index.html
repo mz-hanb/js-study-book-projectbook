@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>chapter13> quiz</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <div class="quiz-container">
+    <h1>퀴즈</h1>
+    <section class="stage stage-quiz">
+      <div class="question">
+        문제 1) 문제입니다.
+      </div>
+      <ul class="givens">
+        <li>
+          <button>1</button>
+        </li>
+        <li>
+          <button>2</button>
+        </li>
+        <li>
+          <button>3</button>
+        </li>
+        <li>
+          <button>4</button>
+        </li>
+      </ul>
+      <p class="quiz-num">문제 1 / 4</p>
+    </section>
+
+    <section class="stage stage-reasult">
+      <h2>결과</h2>
+      <p class="user-right-num">당신의 점수: 3/4</p>
+      <p class="user-total">75점</p>
+      <p class="reasult-ment">무난한 점수네요.</p>
+    </section>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="./js/quiz.js"></script>
+  <script>
+    (function(){
+      var quiz;
+      // console.log( 'main' );
+      loadData('./data/quiz.json');
+
+      function loadData(fileUrl){
+        $.ajax({
+          url: fileUrl, 
+          dataType: 'json',
+          success: function(data){
+            console.log(data);
+            quiz = Quiz('.quiz-container', data);
+          }, 
+          error: function(e){
+            console.log( 'load error: ' +  e );
+          }
+        })
+      }
+
+    }())
+  </script>
+
+</body>
+
+</html>
