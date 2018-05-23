@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <!-- <link rel="stylesheet" href="./css/fontawesome.min.css"> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <div class="memo-container">
+
+    <!-- <div class="memo">
+      <nav>
+        <span class="ui-left">                 
+          <i class="fas fa-plus btn-add"></i>
+          <i class="far fa-save btn-save"></i>
+        </span>
+        <span class="ui-right">
+            <i class="fas fa-list btn-show-list"></i>
+            <i class="fas fa-times btn-remove"></i>        
+        </span>          
+      </nav>
+      <form action="">
+          <textarea name="" id="txt" class="txt"  cols="30" rows="10"></textarea>
+      </form>      
+      <div class="sidebar">
+
+      </div>    
+    </div> -->
+
+  </div>
+  <script src="./js/memo.js"></script>
+  <script>
+    var $memoContainer = $('.memo-container');
+    var memos = [];
+    new Memo($memoContainer, getRandomPos());
+    setTimeout(() => {
+      
+     //  memos = $('.memo');
+     
+      
+      console.log( memos.length );
+
+    }, 1000);
+
+
+$memoContainer.on('add', '.memo',  function(e){
+  console.log('add');
+  addMemo();
+});
+
+$memoContainer.on('remove', '.memo',  function(e){
+  console.log('remove');
+  
+});
+
+
+$memoContainer.on('mousedown', '.memo', function(e){
+  console.log( e.target );
+  console.log( e.currentTarget );
+  // console.log('add');
+  // addMemo();
+});
+
+    //  $('.memo').on('add', function (e) {
+    //     // console.log( e.type);
+    //     addMemo();
+    //   })
+    //   $('.memo').on('save', function (e) {
+    //     console.log( e.type);
+    //   })
+    //   $('.memo').on('showList', function (e) {
+    //     console.log( e.type);
+    //   })
+    //   $('.memo').on('remove', function (e) {
+    //     console.log( e.type);
+    //   });
+
+
+    function addMemo(){
+      new Memo($memoContainer, getRandomPos() );
+    }
+
+    function getRandomPos(){
+      return {x: Math.floor( Math.random() * $memoContainer.width() ), y: Math.floor( Math.random() * $memoContainer.height() )}
+    }
+
+
+    
+  </script>
+</body>
+
+</html>

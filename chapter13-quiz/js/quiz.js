@@ -83,10 +83,14 @@ function Quiz(stQuizContainer, data){
   function showResult(){
     $userRightNum.text('당신의 점수: ' + rightNum + '/' + quizTotal );
     $userTotal.text( scoreUnit * rightNum + ' 점' );
-    $reasultMent.text( getResultMent() );
+    $reasultMent.text( getResultMent(rightNum) );
   }
 
   function getResultMent(){
-    if(rightNum >= 4)
+    
+    
+    if(rightNum >= 4){
+      
+    }
   }
 }
