@@ -6,7 +6,7 @@ function Quiz(stQuizContainer, data){
   // quiz stage
   var $stageQuiz = $quiz.find('.stage-quiz');
   var $question = $stageQuiz.find('.question');
-  var givens = $stageQuiz.find('.givens li button');
+  var $givens = $stageQuiz.find('.givens li button');
   var $qNum = $stageQuiz.find('.quiz-num');  
 
   // result stage
@@ -25,17 +25,15 @@ function Quiz(stQuizContainer, data){
 
   
   init();
-  setStage('result');
+  setStage('quiz');
   setQuiz(1);  
 
 
   // var idx = -1;
 
   function init(){
-    givens.on('click', function(e){      
-      // console.log( $( givens ).index(this) ); // http://blog.freezner.com/archives/261      
-      checkAnswer( $(givens).index(this) + 1 );
-      
+    $givens.on('click', function(e){                 
+      checkAnswer( $givens.index(this) + 1 );
     });
   }
 
@@ -62,7 +60,7 @@ function Quiz(stQuizContainer, data){
     currentRight = currentQ.right;
     $question.text( '문제 ' + qNum + ' ) ' + currentQ.q );    
     
-    givens.each(function(idx){      
+    $givens.each(function(idx){      
       $(this).text( currentQ.given[idx] );
     });   
     $qNum.text( '문제 '+ currentQNum + ' / ' + quizTotal);  
