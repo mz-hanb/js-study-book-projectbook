@@ -11,90 +11,79 @@
     crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
+    <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
-  <div class="memo-container">
-
-    <!-- <div class="memo">
-      <nav>
-        <span class="ui-left">                 
-          <i class="fas fa-plus btn-add"></i>
-          <i class="far fa-save btn-save"></i>
-        </span>
-        <span class="ui-right">
-            <i class="fas fa-list btn-show-list"></i>
-            <i class="fas fa-times btn-remove"></i>        
-        </span>          
-      </nav>
-      <form action="">
-          <textarea name="" id="txt" class="txt"  cols="30" rows="10"></textarea>
-      </form>      
-      <div class="sidebar">
-
-      </div>    
-    </div> -->
-
-  </div>
-  <script src="./js/memo.js"></script>
+  <div class="memo-container"></div>
+  <script src="./js/Memo.js"></script>
   <script>
     var $memoContainer = $('.memo-container');
-    var memos = [];
-    new Memo($memoContainer, getRandomPos());
-    setTimeout(() => {
-      
-     //  memos = $('.memo');
-     
-      
-      console.log( memos.length );
-
-    }, 1000);
-
-
-$memoContainer.on('add', '.memo',  function(e){
-  console.log('add');
-  addMemo();
-});
-
-$memoContainer.on('remove', '.memo',  function(e){
-  console.log('remove');
-  
-});
-
-
-$memoContainer.on('mousedown', '.memo', function(e){
-  console.log( e.target );
-  console.log( e.currentTarget );
-  // console.log('add');
-  // addMemo();
-});
-
-    //  $('.memo').on('add', function (e) {
-    //     // console.log( e.type);
-    //     addMemo();
-    //   })
-    //   $('.memo').on('save', function (e) {
-    //     console.log( e.type);
-    //   })
-    //   $('.memo').on('showList', function (e) {
-    //     console.log( e.type);
-    //   })
-    //   $('.memo').on('remove', function (e) {
-    //     console.log( e.type);
-    //   });
-
-
-    function addMemo(){
-      new Memo($memoContainer, getRandomPos() );
-    }
-
-    function getRandomPos(){
-      return {x: Math.floor( Math.random() * $memoContainer.width() ), y: Math.floor( Math.random() * $memoContainer.height() )}
-    }
-
-
+    var $currentMemo = null;
+    var isFirst = true;
+    var addCnt = 0;
     
+    
+    addMemo();   
+
+    // event handlers: add
+    $memoContainer.on('add', '.memo', function (e) {     
+      console.log( 'add');
+      addMemo();
+    });
+
+    // event handlers: remove    
+    $memoContainer.on('remove-memo', '.memo', function (e) {    
+      if( $('.memo').length === 1 ) return;
+      $(this).remove();
+      setCurrentMemo( $('.memo').last() );
+    });    
+
+    // current memo    
+    $memoContainer.on('click', '.memo', function (e) {   
+      if( e.target.nodeName === 'I') return;
+      // console.log( e.target.nodeName );
+      // console.log('click');
+      setCurrentMemo( $(this) );      
+    })
+
+    function setCurrentMemo( $memo ){
+      // console.log( 'setCurrent> ',  $memo.attr('data-id') );
+      
+      $('.memo').css({
+        zIndex: 0, 
+        opacity: .5,
+        backgroundColor: 'shade(#663399, 42%)'
+      });
+
+      $currentMemo = null;
+      $currentMemo = $memo;
+      $memo.css({
+          zIndex: '9999', 
+          opacity: 1
+        })  
+    }
+
+    function addMemo() {        
+      addCnt++;
+      new Memo($memoContainer, getRandomPos(), addCnt);      
+      setCurrentMemo( $('.memo').last() );
+    }
+    function getRandomPos() {
+      if( isFirst ){
+        isFirst = false;
+        return {x: 0, y: 0};
+      }
+    
+      return {
+        x: Math.floor( Math.random() * ( $memoContainer.width() - 250 ) ),
+        y: Math.floor( Math.random() * ( $memoContainer.height() - 300) )
+      }
+    }
   </script>
 </body>
 
